@@ -49,6 +49,15 @@ Error | undefined => {
 
 
 
-const fetchWrapper = async (url:string,  options: RequestInit) => {
-    const respone = await customFetch(url, options)
-}
+export const fetchWrapper = async (url:string,  options: RequestInit) => {
+    const respone = await customFetch(url, options);
+    const responeClone = respone.clone();
+    const body = await responeClone.json();
+
+    const error = getGarphQLError(body);
+    if(error){
+        throw error;
+    }
+    return response;
+
+ }
