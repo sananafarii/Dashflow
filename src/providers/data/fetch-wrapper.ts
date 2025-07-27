@@ -7,7 +7,7 @@ type Error = {
 }
 
 const customFetch = async (url:string, options:RequestInit ) => {
-    const accessToken = localStorage.getItem('accessToken');
+    const accessToken = localStorage.getItem('access_token');
 
     const headers = options.headers as Record<string, string>;
 
@@ -16,7 +16,7 @@ const customFetch = async (url:string, options:RequestInit ) => {
         headers: {
             ...headers,
             Authorization:headers?.Authorization || `Bearer ${accessToken}`,
-            "content-type": "application/json",
+            "Content-Type": "application/json",
             "Apollo-Require-Preflight": "true",
         }
     })
@@ -50,9 +50,16 @@ Error | undefined => {
 
 
 export const fetchWrapper = async (url:string,  options: RequestInit) => {
-    const respone = await customFetch(url, options);
-    const responeClone = respone.clone();
-    const body = await responeClone.json();
+    const response = await customFetch(url, options);
+    const responseClone = response.clone();
+    
+    let body;
+    try {
+        body = await responseClone.json();
+    } catch (error) {
+        // If response is not JSON, return original response
+        return response;
+    }
 
     const error = getGarphQLError(body);
     if(error){
