@@ -14,9 +14,9 @@ import routerBindings, {
   DocumentTitleHandler,
   UnsavedChangesNotifier,
 } from "@refinedev/react-router";
-import { App as AntdApp, Layout } from "antd";
+import { App as AntdApp } from "antd";
 import { BrowserRouter, Outlet, Route, Routes } from "react-router";
-
+import Layout from "./components/layout";
 function App() {
   return (
     <BrowserRouter>
@@ -39,6 +39,9 @@ function App() {
                 }}
               >
                 <Routes>
+                   <Route path="/register" element={<Register />} />
+                   <Route path="/login" element={<Login />} />
+                   <Route path="/forgot-password" element={<ForgotPassword />} />
                    <Route 
                      element={
                        <Authenticated
@@ -49,14 +52,9 @@ function App() {
                            <Outlet />
                          </Layout>
                        </Authenticated>
-                     }
-                   >
+                     }>
                      <Route index element={<Home />} />
                    </Route>
-                   
-                   <Route path="/register" element={<Register />} />
-                   <Route path="/login" element={<Login />} />
-                   <Route path="/forgot-password" element={<ForgotPassword />} />
                 </Routes>
                 <RefineKbar />
                 <UnsavedChangesNotifier />
