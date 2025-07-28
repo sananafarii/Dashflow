@@ -8,14 +8,17 @@ type Error = {
 
 const customFetch = async (url:string, options:RequestInit ) => {
     const accessToken = localStorage.getItem('access_token');
-
     const headers = options.headers as Record<string, string>;
+
+    // Debug log to see what's being sent
+    console.log('Request options:', options);
+    console.log('Request body:', options.body);
 
     return await fetch(url,{
         ...options,
         headers: {
             ...headers,
-            Authorization:headers?.Authorization || `Bearer ${accessToken}`,
+            Authorization: headers?.Authorization || `Bearer ${accessToken}`,
             "Content-Type": "application/json",
             "Apollo-Require-Preflight": "true",
         }
@@ -53,16 +56,23 @@ export const fetchWrapper = async (url:string,  options: RequestInit) => {
     const response = await customFetch(url, options);
     const responseClone = response.clone();
     
+    // Debug log response
+    console.log('Response status:', response.status);
+    console.log('Response headers:', response.headers);
+    
     let body;
     try {
         body = await responseClone.json();
+        console.log('Response body:', body);
     } catch (error) {
+        console.log('Failed to parse JSON response:', error);
         // If response is not JSON, return original response
         return response;
     }
 
     const error = getGarphQLError(body);
     if(error){
+        console.log('GraphQL error:', error);
         throw error;
     }
     return response;

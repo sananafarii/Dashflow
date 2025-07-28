@@ -5,10 +5,10 @@ function CurrentUser() {
   return (
     <>
     <Popover
-    placement ="bottomRight"
-    trigger="click"
-    overlayInnerStyle ={{padding: 0}}
-    overlayStyle={{ zIndex: 999 }}
+      placement="bottomRight"
+      trigger="click"
+      arrow={false}
+      zIndex={999}
     >
         TEST
     

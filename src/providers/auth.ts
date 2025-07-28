@@ -1,6 +1,15 @@
 import type { AuthProvider } from "@refinedev/core";
 
-import type { User } from "@/graphql/schema.types";
+// Define User type locally until GraphQL types are generated
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  jobTitle?: string;
+  timezone?: string;
+  avatarUrl?: string;
+}
 
 import { API_URL, dataProvider } from "./data";
 
