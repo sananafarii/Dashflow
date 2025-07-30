@@ -1,5 +1,5 @@
 import { Popover, Button } from 'antd';
-import React from 'react'
+import CustomAvatar from '../custom-avatar';
 
 function CurrentUser() {
   return (
@@ -10,8 +10,7 @@ function CurrentUser() {
       arrow={false}
       zIndex={999}
     >
-        TEST
-    
+        <CustomAvatar />
     </Popover> 
       
     </>
