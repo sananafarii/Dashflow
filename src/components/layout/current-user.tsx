@@ -3,14 +3,25 @@ import CustomAvatar from '../custom-avatar';
 import { useGetIdentity } from '@refinedev/core';
 
 
-import { User } from '@/graphql.schema.types';
+import type { User } from '@/graphql/schema.types';
 
 
 
 function CurrentUser() {
   const {data: user } = useGetIdentity<User>();
 
-  user.
+
+const content = (
+  <div style={{
+    display:'flex',
+    flexDirection:'column',
+
+  }}
+  
+  >
+
+  </div>
+)
 
 
   return (

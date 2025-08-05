@@ -1,23 +1,29 @@
-import { Avatar as AntdAvatar } from "antd"
+import { getNameInitials } from "@/utilities";
+import { Avatar as AntdAvatar, AvatarProps} from "antd"
 
 type Props = {
-    name: string;
+    name?: string;
+    rest?: AvatarProps;
 }
 
 
-const CustomAvatar = ({name, style, ...rest}: Props) => {
+const CustomAvatar = ({name, style, 
+ ...rest}: Props) => {
+  
   return (
     <AntdAvatar
-    alt="SanaNafari"
+    alt={'SanaNafari'}
     size="small"
     style={{
         backgroundColor:'#87d068',
         display:'flex',
         alignItems:'center',
-        border:'none'
+        border:'none',
+        ...style
     }}
+     {...rest}
     >
-      {name}
+      {getNameInitials(name || '')}
     </AntdAvatar>
   )
 }
