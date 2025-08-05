@@ -1,0 +1,15 @@
+/* Current User Popover Styles */
+.current-user-popover .ant-popover-inner {
+  padding: 0 !important;
+}
+
+.current-user-popover {
+  z-index: 999 !important;
+}
+
+.current-user-popover-content {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  min-width: 200px;
+}

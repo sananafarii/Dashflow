@@ -3,6 +3,7 @@ import CustomAvatar from '../custom-avatar';
 import { useGetIdentity } from '@refinedev/core';
 import { SettingOutlined } from '@ant-design/icons';
 import React, { useState } from 'react';
+import { AccountSettings } from './account-settings';
 import './current-user.css';
 
 const { Text } = Typography;
@@ -78,7 +79,9 @@ const content = (
     </Popover> 
     {user && (
       <AccountSettings
-      
+      opened={isOpen}
+      setOpened={setIsOpen}
+      userId={user.id}
       />
 
     )}
