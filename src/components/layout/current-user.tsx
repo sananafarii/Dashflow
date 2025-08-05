@@ -1,13 +1,21 @@
-import { Popover, Button } from 'antd';
+import { Popover, Button, Typography } from 'antd';
 import CustomAvatar from '../custom-avatar';
 import { useGetIdentity } from '@refinedev/core';
+import { SettingOutlined } from '@ant-design/icons';
 
+const { Text } = Typography;
 
-import type { User } from '@/graphql/schema.types';
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatarUrl?: string;
+}
 
 
 
 function CurrentUser() {
+  const {isOpen, setIsOpen} = useState(false)
   const {data: user } = useGetIdentity<User>();
 
 
@@ -16,21 +24,46 @@ const content = (
     display:'flex',
     flexDirection:'column',
 
-  }}
-  
-  >
+  }}>
+    <Text
+    strong
+    style={{padding: '12px 20px'}}
+    
+    >
+      {user?.name}
 
+    </Text>
+
+
+
+    <div>
+      <Button
+      style={{textAlign: 'left'}}
+      icon={<SettingOutlined/>}
+      type="text"
+      block
+      onClick={() => setIsOpen(true)}
+      
+      >
+        Accounts Settings
+       
+      </Button>
+    </div>
   </div>
+
+
+ 
+ 
 )
 
 
   return (
-    <>
     <Popover
       placement="bottomRight"
       trigger="click"
       arrow={false}
       zIndex={999}
+      content={content}
     >
         <CustomAvatar
         name={user?.name}
@@ -38,12 +71,7 @@ const content = (
         size={32}
         style={{ cursor : 'pointer' }}
          />
-
-
-         
     </Popover> 
-      
-    </>
   )
 }
 
