@@ -13,16 +13,12 @@ const Header = () => {
     zIndex: 999,
   }
 
-
-
-
   return (
-    <Layout.Header style={headerStyles}>
+    <Layout.Header style={headerStyle}>
       <Space align='center' size="middle">
         <CurrentUser/>
       </Space>
     </Layout.Header> 
-  
   )
 }
 
