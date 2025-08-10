@@ -3,6 +3,7 @@ import { Avatar as AntdAvatar, AvatarProps} from "antd"
 
 type Props = {
     name?: string;
+    style?: React.CSSProperties;
     rest?: AvatarProps;
 }
 
