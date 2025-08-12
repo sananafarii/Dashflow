@@ -2,9 +2,22 @@ import React from 'react'
 import {Card } from 'antd'
 import { DollarOutlined } from '@ant-design/icons';
 import { Text } from '../text';
+import { Area, AreaConfig } from '@ant-design/plots';
+import { DASHBOARD_DEALS_CHART_QUERY } from '@/graphql/queries';
+import { useList } from '@refinedev/core';
 
 const DealsChart = () => {
-  const config = {}
+   const { data } = useList({
+    resource: 'dealStages',
+    meta : {
+      gqlQuery: DASHBOARD_DEALS_CHART_QUERY
+    }
+   });
+
+   const config: AreaConfig = {
+    data: []
+   }
+  }
   return (
     <div>
       <Card
