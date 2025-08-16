@@ -81,4 +81,4 @@ const DealsChart = () => {
   )
 }
 
-export default DealsChart
+export default DealsChart;
